@@ -37,9 +37,7 @@ Mock.foo 1
 mock.bar 1, 2
 
 # use the result of a mocked method
-mock.stub :baz do |*args|
-  true
-end
+mock.stub(:baz) { true }
 assert mock.baz # Test::Unit
 mock.baz.should be_true # RSpec
 ```
