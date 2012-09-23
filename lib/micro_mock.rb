@@ -15,7 +15,7 @@
 #
 #   mock = Mock.new
 #
-#   mock an instance method
+#   # mock an instance method
 #   mock.stub :bar do |*args|
 #     assert_equal 2, args.length # Test::Unit
 #     args.length.should eq 2 # RSpec
