@@ -10,9 +10,8 @@
 # and "mocking" a class with real behavior proves to be quite useful.
 #
 # @example
-#   Mock = MicroMock.make
-#
 #   # mock a class method
+#   Mock = MicroMock.make
 #   Mock.stub(:foo) { true }
 #
 #   # make assertions

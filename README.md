@@ -17,9 +17,8 @@ gem install micro_mock
 
 ## Usage
 ```ruby
-Mock = MicroMock.make
-
 # mock a class method
+Mock = MicroMock.make
 Mock.stub(:foo) { true }
 
 # make assertions
