@@ -20,19 +20,19 @@ gem install micro_mock
 Mock = MicroMock.make
 
 # mock a class method
-Mock.stub(:foo) { :bar }
+Mock.stub(:foo) { true }
 
 # make assertions
-assert_equal :bar, Mock.foo # Test::Unit
-Mock.foo.should eq :bar # RSpec
+assert Mock.foo # Test::Unit
+Mock.foo.should be_true # RSpec
 
 # mock an instance method
 m = Mock.new
-m.stub(:bar) { :foo }
+m.stub(:bar) { false }
 
 # make assertions
-assert_equal :foo, m.bar # Test::Unit
-m.bar.should eq :foo # RSpec
+assert_equal false, m.bar # Test::Unit
+m.bar.should eq false # RSpec
 
 # setup mock internal behavior
 count = 1
