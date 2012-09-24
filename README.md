@@ -44,3 +44,6 @@ m.stub(:b) { |i| self.a if i > 5 }
 assert_equal 5, count # Test::Unit
 count.should eq 5 # RSpec
 ```
+
+Of course you wouldn't normally test the mock itself... rather the code that uses the mock.
+I'll work on adding some real world examples.

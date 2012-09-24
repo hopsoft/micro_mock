@@ -2,7 +2,7 @@ require 'rake'
 
 Gem::Specification.new do |spec|
   spec.name = 'micro_mock'
-  spec.version = '0.0.1'
+  spec.version = '0.0.2'
   spec.license = 'MIT'
   spec.homepage = 'http://hopsoft.github.com/micro_mock/'
   spec.summary = 'A tiny mocking script.'
