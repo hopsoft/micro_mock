@@ -6,7 +6,8 @@
 # Calling it a mocking script is a bit of a misnomer
 # since its really a dynamic class generator.
 #
-# And "mocking" a class with real behavior proves to be quite useful.
+# The term "stub" is used loosely since it adds real behavior...
+# and "mocking" a class with real behavior proves to be quite useful.
 #
 # @example
 #   Mock = MicroMock.make
