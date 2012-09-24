@@ -1,13 +1,12 @@
 # MicroMock
 
-# MicroMock is a tiny mocking script.
+### A tiny mocking script.
 
-It doesn't make any assumptions about the testing framework
-and leaves assertions/expectations up to you.
+MicroMock doesn't make any assumptions about the testing framework.
+It leaves assertions/expectations up to you.
 
 Calling it a mocking script is a bit of a misnomer
 since its really a dynamic class generator.
-
 The term "stub" is used loosely since it adds real behavior...
 and "mocking" a class with real behavior proves to be quite useful.
 
