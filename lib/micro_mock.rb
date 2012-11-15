@@ -38,6 +38,16 @@
 #
 # Of course you wouldn't normally test the mock itself... rather the code that uses the mock.
 # I'll work on adding some real world examples.
+#
+# @ example
+#   Mock with a superclass.
+#   Mock = MicroMock.make(Array)
+#   list = Mock.new
+#   list << 1
+#   list.stub :say_hi do |name|
+#     "Hi #{name}!"
+#   end
+#   list.say_hi "Nate" # => "Hi Nate!"
 module MicroMock
 
   # Stubs a method.
@@ -51,11 +61,12 @@ module MicroMock
   end
 
   # Defines a mock class.
-  def self.make
-    Class.new do
-      extend MicroMock
-      include MicroMock
-    end
+  def self.make(superclass=nil)
+    klass = Class.new(superclass) if superclass
+    klass ||= Class.new
+    klass.extend MicroMock
+    klass.send :include, MicroMock
+    klass
   end
 
 end

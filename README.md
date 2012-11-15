@@ -44,5 +44,16 @@ assert_equal 5, count # Test::Unit
 count.should eq 5 # RSpec
 ```
 
+```ruby
+# create a mock that subclasses Array
+Mock = MicroMock.make(Array)
+list = Mock.new
+list << 1
+list.stub :say_hi do |name|
+  "Hi #{name}!"
+end
+list.say_hi "Nate" # => "Hi Nate!"
+```
+
 Of course you wouldn't normally test the mock itself... rather the code that uses the mock.
 I'll work on adding some real world examples.
