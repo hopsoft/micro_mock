@@ -66,6 +66,7 @@ module MicroMock
     klass ||= Class.new
     klass.extend MicroMock
     klass.send :include, MicroMock
+    Object.const_set "MicroMock#{klass.object_id}", klass
     klass
   end
 
