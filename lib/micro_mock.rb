@@ -61,26 +61,15 @@ module MicroMock
   end
 
   # Defines a mock class.
-  def self.make(superclass=nil)
-    if superclass
-      klass = Class.new(superclass) do
-        def initialize(*args)
-          @args = args
-          super
-        end
-      end
-    else
-      klass = Class.new do
-        def initialize(*args)
-          @args = args
-        end
+  def self.make(superclass=Object)
+    klass = Class.new(superclass) do
+      def initialize(*args)
+        @args = args
+        super unless self.class.superclass == Object
       end
     end
     klass.extend MicroMock
     klass.send :include, MicroMock
-    def klass.initialize(*args)
-      super
-    end
     Object.const_set "MicroMock#{klass.object_id}", klass
     klass
   end
