@@ -1,59 +1,75 @@
 # MicroMock
 
-### A tiny mocking script.
+### Perhaps the lightest mocking strategy available
 
-MicroMock doesn't make any assumptions about the testing framework.
-It leaves assertions/expectations up to you.
-
-Calling it a mocking script is a bit of a misnomer
-since its really a dynamic class generator.
-The term "stub" is used loosely since it adds real behavior...
-and "mocking" a class with real behavior proves to be quite useful.
+Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator. The term "stub" is used loosely since it adds real behavior...
+and "mocking" with real behavior proves to be quite useful.
 
 ## Intall
+
 ```bash
 gem install micro_mock
 ```
 
-## Usage
+## Quick Start
+
 ```ruby
-# mock a class method
-Mock = MicroMock.make
-Mock.stub(:foo) { true }
+# create a mock class
+MyMock = MicroMock.make
 
-# make assertions
-assert Mock.foo # Test::Unit
-Mock.foo.should be_true # RSpec
+# stub a class method
+MyMock.stub(:foo) { "foo" }
 
-# mock an instance method
-m = Mock.new
-m.stub(:bar) { false }
+# create a mock instance
+mock = MyMock.new
 
-# make assertions
-assert_equal false, m.bar # Test::Unit
-m.bar.should eq false # RSpec
+# stub an instance method
+mock.stub(:bar) { "#{self.class.foo}bar" }
 
-# setup mock internal behavior
-count = 1
-m.stub(:a) { count += 1 }
-m.stub(:b) { |i| self.a if i > 5 }
-
-# make assertions
-10.times { |i| m.b(i) }
-assert_equal 5, count # Test::Unit
-count.should eq 5 # RSpec
+MyMock.foo # => "foo"
+mock.bar # => "foobar"
 ```
 
-Of course you wouldn't normally test the mock itself... rather the code that uses the mock.
-I'll work on adding some real world examples.
+## Next Steps
 
 ```ruby
 # create a mock that subclasses Array
-Mock = MicroMock.make(Array)
-list = Mock.new
-list << 1
-list.stub :say_hi do |name|
-  "Hi #{name}!"
+MockList = MicroMock.make(Array)
+
+list = MockList.new
+
+# stub an instance method that does something interesting
+list.stub :prefixed do |prefix|
+  map { |value| "#{prefix}:#{value}"}
 end
-list.say_hi "Nate" # => "Hi Nate!"
+
+list.concat [1, 2, 3]
+list.prefixed(:num) # => ["num:1", "num:2", "num:3"]
 ```
+
+## Deep Cuts
+
+Here is an example that mocks part of ActiveRecord.
+
+```ruby
+Model = MicroMock.make
+model = Model.new
+model.stub(:destroy) { @destroyed = true }
+model.stub(:destroyed?) { @destroyed }
+model.stub(:update_attributes) { |*args| @attributes_updated = true }
+model.stub(:save) { |*args| @saved = true }
+Model.stub(:find) { |*args| model.clone }
+Model.stub(:all) { (1..5).map { model.clone } }
+
+# try it out
+list = Model.all # => [#<MicroMock70331390241500:0x007fee9b1b1bb0 @args=[]>, #<MicroMock...]
+m = Model.find(1) # => #<MicroMock70331390241500:0x007fee9b17b6a0 @args=[]>
+m.update_attributes(:foo, "bar") # => true
+m.save # => true
+m.destroy # => true
+m.destroyed? # => true
+```
+
+For a more complete example, check out [Coast's test suite](https://github.com/hopsoft/coast/blob/master/test/test_coast.rb) which mocks a significant portion of Rails.
+
+Enjoy!

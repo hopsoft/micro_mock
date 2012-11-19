@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.homepage = 'http://hopsoft.github.com/micro_mock/'
   spec.summary = 'A tiny mocking script.'
   spec.description = <<-DESC
-    MicroMock might just be the lightest mocking strategy available.
+    Perhaps the lightest mocking strategy available.
   DESC
 
   spec.authors = ['Nathan Hopkins']
