@@ -17,17 +17,27 @@ gem install micro_mock
 # create a mock class
 MyMock = MicroMock.make
 
+# add a class attr
+MyMock.attr(:foo)
+
 # stub a class method
-MyMock.stub(:foo) { "foo" }
+MyMock.stub(:say_foo) { |arg| "#{foo} #{arg}!" }
 
 # create a mock instance
 mock = MyMock.new
 
-# stub an instance method
-mock.stub(:bar) { "#{self.class.foo}bar" }
+# add an instance attr
+mock.attr(:bar)
 
-MyMock.foo # => "foo"
-mock.bar # => "foobar"
+# stub some instance methods
+mock.stub(:say_bar) { |arg| "#{bar} #{arg}!" }
+
+# use the mock
+MyMock.foo = :foo
+MyMock.say_foo :bar # => "foobar!"
+
+mock.bar = :bar
+mock.say_bar :foo # => "barfoo!"
 ```
 
 ## Next Steps
