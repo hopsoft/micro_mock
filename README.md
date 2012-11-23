@@ -21,7 +21,7 @@ MyMock = MicroMock.make
 MyMock.attr(:foo)
 
 # add a class attr with a default value
-MyMock.attr(:foo_with_default, true)
+MyMock.attr(:attr_with_default, "Class value")
 
 # stub a class method
 MyMock.stub(:say_foo) { |arg| "#{foo} #{arg}!" }
@@ -33,19 +33,19 @@ mock = MyMock.new
 mock.attr(:bar)
 
 # add an instance attr with a default value
-mock.attr(:bar_with_default, true)
+mock.attr(:attr_with_default, "Instance value")
 
 # stub some instance methods
 mock.stub(:say_bar) { |arg| "#{bar} #{arg}!" }
 
 # use the mock
+MyMock.attr_with_default # => "Class value"
 MyMock.foo # => nil
-MyMock.foo_with_default # => true
 MyMock.foo = :foo
 MyMock.say_foo :bar # => "foobar!"
 
+mock.attr_with_default # => "Instance value"
 mock.bar # => nil
-mock.bar_with_default # => true
 mock.bar = :bar
 mock.say_bar :foo # => "barfoo!"
 ```
