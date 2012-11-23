@@ -17,8 +17,10 @@ module MicroMock
 
   # Creates an attribute getter & setter.
   # @param [Symbol] name The name of the attribute.
-  def attr(name)
+  # @param [Object] default_value An optional default value.
+  def attr(name, default_value=nil)
     context.send :attr_accessor, name
+    instance_variable_set "@#{name}", default_value
   end
 
   # Stubs a method.
