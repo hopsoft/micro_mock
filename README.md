@@ -42,12 +42,12 @@ mock.meth(:say_bar) { |arg| "#{bar} #{arg}!" }
 MyMock.attr_with_default # => "Class value"
 MyMock.foo # => nil
 MyMock.foo = :foo
-MyMock.say_foo :bar # => "foobar!"
+MyMock.say_foo :bar # => "foo bar!"
 
 mock.attr_with_default # => "Instance value"
 mock.bar # => nil
 mock.bar = :bar
-mock.say_bar :foo # => "barfoo!"
+mock.say_bar :foo # => "bar foo!"
 ```
 
 ## Next Steps
