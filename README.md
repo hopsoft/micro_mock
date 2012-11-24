@@ -2,8 +2,8 @@
 
 ### Perhaps the lightest mocking strategy available
 
-Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator. The term "stub" is used loosely since it adds real behavior...
-and "mocking" with real behavior proves to be quite useful.
+Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator
+ ...and "mocking" with real behavior proves to be quite useful.
 
 ## Intall
 
@@ -23,8 +23,8 @@ MyMock.attr(:foo)
 # add a class attr with a default value
 MyMock.attr(:attr_with_default, "Class value")
 
-# stub a class method
-MyMock.stub(:say_foo) { |arg| "#{foo} #{arg}!" }
+# add a class method
+MyMock.meth(:say_foo) { |arg| "#{foo} #{arg}!" }
 
 # create a mock instance
 mock = MyMock.new
@@ -35,8 +35,8 @@ mock.attr(:bar)
 # add an instance attr with a default value
 mock.attr(:attr_with_default, "Instance value")
 
-# stub some instance methods
-mock.stub(:say_bar) { |arg| "#{bar} #{arg}!" }
+# add an instance method
+mock.meth(:say_bar) { |arg| "#{bar} #{arg}!" }
 
 # use the mock
 MyMock.attr_with_default # => "Class value"
@@ -58,8 +58,8 @@ MockList = MicroMock.make(Array)
 
 list = MockList.new
 
-# stub an instance method that does something interesting
-list.stub :prefixed do |prefix|
+# add an instance method that does something interesting
+list.meth :prefixed do |prefix|
   map { |value| "#{prefix}:#{value}"}
 end
 
@@ -74,12 +74,12 @@ Here is an example that mocks part of ActiveRecord.
 ```ruby
 Model = MicroMock.make
 model = Model.new
-model.stub(:destroy) { @destroyed = true }
-model.stub(:destroyed?) { @destroyed }
-model.stub(:update_attributes) { |*args| @attributes_updated = true }
-model.stub(:save) { |*args| @saved = true }
-Model.stub(:find) { |*args| model.clone }
-Model.stub(:all) { (1..5).map { model.clone } }
+model.meth(:destroy) { @destroyed = true }
+model.meth(:destroyed?) { @destroyed }
+model.meth(:update_attributes) { |*args| @attributes_updated = true }
+model.meth(:save) { |*args| @saved = true }
+Model.meth(:find) { |*args| model.clone }
+Model.meth(:all) { (1..5).map { model.clone } }
 
 # try it out
 list = Model.all # => [#<MicroMock70331390241500:0x007fee9b1b1bb0 @args=[]>, #<MicroMock...]

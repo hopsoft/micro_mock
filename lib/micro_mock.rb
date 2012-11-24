@@ -23,13 +23,13 @@ module MicroMock
     instance_variable_set "@#{name}", default_value
   end
 
-  # Stubs a method.
-  # The term stub is used loosely since it adds real functionality.
+  # Creates a method.
   # @param [Symbol] name The name of the method.
-  # @yield The block that will serve as the method definition.
-  def stub(name, &block)
+  # @yield The block that will serve as the method body.
+  def meth(name, &block)
     context.send :define_method, name, &block
   end
+  alias_method :stub, :meth
 
   private
 
