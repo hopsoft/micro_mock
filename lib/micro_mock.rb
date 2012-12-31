@@ -2,8 +2,12 @@
 module MicroMock
 
   # Defines a mock class.
-  def self.make(superclass=Object)
+  def self.make(*ancestors)
+    superclass = ancestors.shift if ancestors.first.is_a?(Class)
+    superclass ||= Object
+    mixins = ancestors
     klass = Class.new(superclass) do
+      mixins.each { |mixin| send :include, mixin }
       def initialize(*args)
         @args = args
         super unless self.class.superclass == Object

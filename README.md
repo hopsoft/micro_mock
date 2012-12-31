@@ -53,17 +53,26 @@ mock.say_bar :foo # => "bar foo!"
 ## Next Steps
 
 ```ruby
-# create a mock that subclasses Array
-MockList = MicroMock.make(Array)
+module Useless
+  def reverse_string
+    reverse.join(",")
+  end
+end
+
+# create a mock that subclasses Array and mixes in the Useless module defined above
+# note: the superclass must be passed before mixin modules
+MockList = MicroMock.make(Array, Useless)
 
 list = MockList.new
+
+# demonstrate that the mock has inherited behavior
+list.concat [1, 2, 3]
+list.reverse_string # => "3,2,1"
 
 # add an instance method that does something interesting
 list.meth :prefixed do |prefix|
   map { |value| "#{prefix}:#{value}"}
 end
-
-list.concat [1, 2, 3]
 list.prefixed(:num) # => ["num:1", "num:2", "num:3"]
 ```
 
