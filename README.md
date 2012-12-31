@@ -53,6 +53,7 @@ mock.say_bar :foo # => "bar foo!"
 ## Next Steps
 
 ```ruby
+# create a useless module to illustrate mocking with ancestors
 module Useless
   def reverse_string
     reverse.join(",")
