@@ -2,8 +2,10 @@
 
 ### Perhaps the lightest mocking strategy available
 
-Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator
- ...and "mocking" with real behavior proves to be quite useful.
+Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator...
+and mocking with real behavior proves quite handy.
+
+**Be sure to checkout [MicroTest](https://github.com/hopsoft/micro_test) for a lightweight test framework with similar goals.**
 
 ## Intall
 
