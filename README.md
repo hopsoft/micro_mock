@@ -22,6 +22,9 @@ MyMock = MicroMock.make
 # add a class attr
 MyMock.attr(:foo)
 
+# add several class attrs at once
+mock.attrs(:one, :two, :three)
+
 # add a class attr with a default value
 MyMock.attr(:attr_with_default, "Class value")
 
@@ -33,6 +36,9 @@ mock = MyMock.new
 
 # add an instance attr
 mock.attr(:bar)
+
+# add several instance attrs at once
+mock.attrs(:first, :second, :third)
 
 # add an instance attr with a default value
 mock.attr(:attr_with_default, "Instance value")

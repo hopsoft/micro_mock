@@ -27,6 +27,12 @@ module MicroMock
     instance_variable_set "@#{name}", default_value
   end
 
+  # Creates attributes for a list of names.
+  # @param [Symbol] names The list of attribute names.
+  def attrs(*names)
+    names.each { |name| attr(name) }
+  end
+
   # Creates a method.
   # @param [Symbol] name The name of the method.
   # @yield The block that will serve as the method body.
