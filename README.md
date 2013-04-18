@@ -1,5 +1,7 @@
 # MicroMock
 
+[![Code Climate](https://codeclimate.com/github/hopsoft/micro_mock.png)](https://codeclimate.com/github/hopsoft/micro_mock)
+
 ### Perhaps the lightest mocking strategy available
 
 Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator...
