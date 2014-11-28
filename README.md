@@ -6,7 +6,7 @@
 
 A small mocking "framework" to help you write more effective tests.
 
-*Be sure to checkout [pry-test](https://github.com/hopsoft/pry-test) for a lightweight test framework with similar goals.*
+*Also, checkout [pry-test](https://github.com/hopsoft/pry-test) for a lightweight test framework.*
 
 ## Quick Start
 
@@ -109,4 +109,3 @@ m.destroyed? # => true
 
 For a more complete example, check out [Coast's test suite](https://github.com/hopsoft/coast/blob/master/test/test_coast.rb) which mocks a significant portion of Rails.
 
-Enjoy!
