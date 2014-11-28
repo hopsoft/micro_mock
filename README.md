@@ -1,21 +1,18 @@
+[![Lines of Code](http://img.shields.io/badge/lines_of_code-36-brightgreen.svg?style=flat)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+[![Code Status](http://img.shields.io/codeclimate/github/hopsoft/micro_mock.svg?style=flat)](https://codeclimate.com/github/hopsoft/micro_mock)
+[![Dependency Status](http://img.shields.io/gemnasium/hopsoft/micro_mock.svg?style=flat)](https://gemnasium.com/hopsoft/micro_mock)
+
 # MicroMock
 
-[![Code Climate](https://codeclimate.com/github/hopsoft/micro_mock.png)](https://codeclimate.com/github/hopsoft/micro_mock)
+A small mocking "framework" to help you write more effective tests.
 
-### Perhaps the lightest mocking strategy available
+*Be sure to checkout [pry-test](https://github.com/hopsoft/pry-test) for a lightweight test framework with similar goals.*
 
-Calling it a mocking script is a bit of a misnomer since its really a dynamic class generator...
-and mocking with real behavior proves quite handy.
-
-*Be sure to checkout [MicroTest](https://github.com/hopsoft/micro_test) for a lightweight test framework with similar goals.*
-
-## Intall
+## Quick Start
 
 ```bash
 gem install micro_mock
 ```
-
-## Quick Start
 
 ```ruby
 # create a mock class
