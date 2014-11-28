@@ -1,6 +1,9 @@
 [![Lines of Code](http://img.shields.io/badge/lines_of_code-35-brightgreen.svg?style=flat)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
 [![Code Status](http://img.shields.io/codeclimate/github/hopsoft/micro_mock.svg?style=flat)](https://codeclimate.com/github/hopsoft/micro_mock)
 [![Dependency Status](http://img.shields.io/gemnasium/hopsoft/micro_mock.svg?style=flat)](https://gemnasium.com/hopsoft/micro_mock)
+[![Build Status](http://img.shields.io/travis/hopsoft/micro_mock.svg?style=flat)](https://travis-ci.org/hopsoft/micro_mock)
+[![Coverage Status](https://img.shields.io/coveralls/hopsoft/micro_mock.svg?style=flat)](https://coveralls.io/r/hopsoft/micro_mock?branch=master)
+[![Downloads](http://img.shields.io/gem/dt/micro_mock.svg?style=flat)](http://rubygems.org/gems/micro_mock)
 
 # MicroMock
 
