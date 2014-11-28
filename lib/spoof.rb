@@ -1,5 +1,5 @@
-# MicroMock is a tiny mocking script.
-module MicroMock
+# Spoof is a tiny mocking script.
+module Spoof
 
   # Defines a mock class.
   def self.make(*ancestors)
@@ -13,8 +13,8 @@ module MicroMock
         super unless self.class.superclass == Object
       end
     end
-    klass.extend MicroMock
-    klass.send :include, MicroMock
+    klass.extend Spoof
+    klass.send :include, Spoof
     klass
   end
 

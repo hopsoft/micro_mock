@@ -4,25 +4,25 @@ require "forwardable"
 require "coveralls"
 Coveralls.wear!
 
-require File.expand_path("../../lib/micro_mock", __FILE__)
+require File.expand_path("../../lib/spoof", __FILE__)
 
-class TestMicroMock < PryTest::Test
+class TestSpoof < PryTest::Test
 
   test "make" do
-    klass = MicroMock.make
+    klass = Spoof.make
     assert klass.is_a?(Class)
-    assert klass.ancestors.include?(MicroMock)
-    assert klass.new.is_a?(MicroMock)
+    assert klass.ancestors.include?(Spoof)
+    assert klass.new.is_a?(Spoof)
   end
 
   test "make with superclass" do
-    klass = MicroMock.make(String)
+    klass = Spoof.make(String)
     assert klass.ancestors.include?(String)
     assert klass.new.is_a?(String)
   end
 
   test "make with superclass & mixins" do
-    klass = MicroMock.make(String, Observable, Forwardable)
+    klass = Spoof.make(String, Observable, Forwardable)
     assert klass.ancestors.include?(Observable)
     assert klass.ancestors.include?(Forwardable)
     assert klass.new.is_a?(Observable)
@@ -30,33 +30,33 @@ class TestMicroMock < PryTest::Test
   end
 
   test "attr on mock class" do
-    klass = MicroMock.make
+    klass = Spoof.make
     klass.attr :foo
     klass.foo = true
     assert klass.foo
   end
 
   test "attr on mock instance" do
-    instance = MicroMock.make.new
+    instance = Spoof.make.new
     instance.attr :foo
     instance.foo = true
     assert instance.foo
   end
 
   test "attr on mock class with default value" do
-    klass = MicroMock.make
+    klass = Spoof.make
     klass.attr :foo, true
     assert klass.foo
   end
 
   test "attr on mock instance with default value" do
-    instance = MicroMock.make.new
+    instance = Spoof.make.new
     instance.attr :foo, true
     assert instance.foo
   end
 
   test "attrs on class" do
-    klass = MicroMock.make
+    klass = Spoof.make
     klass.attrs :foo, :bar, :baz
     klass.foo = 1
     klass.bar = 2
@@ -67,7 +67,7 @@ class TestMicroMock < PryTest::Test
   end
 
   test "attrs on instance" do
-    instance = MicroMock.make.new
+    instance = Spoof.make.new
     instance.attrs :foo, :bar, :baz
     instance.foo = 1
     instance.bar = 2
@@ -78,7 +78,7 @@ class TestMicroMock < PryTest::Test
   end
 
   test "def on class" do
-    klass = MicroMock.make
+    klass = Spoof.make
     klass.attr :foo, 2
     klass.method :foo_times_2 do
       foo * 2
@@ -87,7 +87,7 @@ class TestMicroMock < PryTest::Test
   end
 
   test "def on instance" do
-    instance = MicroMock.make.new
+    instance = Spoof.make.new
     instance.attr :foo, 2
     instance.method :foo_times_2 do
       foo * 2
@@ -96,7 +96,7 @@ class TestMicroMock < PryTest::Test
   end
 
   test "def on class with args" do
-    klass = MicroMock.make
+    klass = Spoof.make
     klass.method :multiply do |a, b|
       a * b
     end
@@ -104,7 +104,7 @@ class TestMicroMock < PryTest::Test
   end
 
   test "def on instance with args" do
-    instance = MicroMock.make.new
+    instance = Spoof.make.new
     instance.method :multiply do |a, b|
       a * b
     end

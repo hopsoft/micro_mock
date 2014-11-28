@@ -1,25 +1,25 @@
 [![Lines of Code](http://img.shields.io/badge/lines_of_code-35-brightgreen.svg?style=flat)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
-[![Code Status](http://img.shields.io/codeclimate/github/hopsoft/micro_mock.svg?style=flat)](https://codeclimate.com/github/hopsoft/micro_mock)
-[![Dependency Status](http://img.shields.io/gemnasium/hopsoft/micro_mock.svg?style=flat)](https://gemnasium.com/hopsoft/micro_mock)
-[![Build Status](http://img.shields.io/travis/hopsoft/micro_mock.svg?style=flat)](https://travis-ci.org/hopsoft/micro_mock)
-[![Coverage Status](https://img.shields.io/coveralls/hopsoft/micro_mock.svg?style=flat)](https://coveralls.io/r/hopsoft/micro_mock?branch=master)
-[![Downloads](http://img.shields.io/gem/dt/micro_mock.svg?style=flat)](http://rubygems.org/gems/micro_mock)
+[![Code Status](http://img.shields.io/codeclimate/github/hopsoft/spoof.svg?style=flat)](https://codeclimate.com/github/hopsoft/spoof)
+[![Dependency Status](http://img.shields.io/gemnasium/hopsoft/spoof.svg?style=flat)](https://gemnasium.com/hopsoft/spoof)
+[![Build Status](http://img.shields.io/travis/hopsoft/spoof.svg?style=flat)](https://travis-ci.org/hopsoft/spoof)
+[![Coverage Status](https://img.shields.io/coveralls/hopsoft/spoof.svg?style=flat)](https://coveralls.io/r/hopsoft/spoof?branch=master)
+[![Downloads](http://img.shields.io/gem/dt/spoof.svg?style=flat)](http://rubygems.org/gems/spoof)
 
-# MicroMock
+# Spoof
 
-A small mocking "framework" to help you write more effective tests.
+A small "mocking framework" to help you write more effective tests.
 
 *Also, checkout [pry-test](https://github.com/hopsoft/pry-test) for a lightweight test framework.*
 
 ## Quick Start
 
 ```bash
-gem install micro_mock
+gem install spoof
 ```
 
 ```ruby
 # create a mock class
-MyMock = MicroMock.make
+MyMock = Spoof.make
 
 # add a class attr
 MyMock.attr(:foo)
@@ -72,7 +72,7 @@ end
 
 # create a mock that subclasses Array and mixes in the Useless module defined above
 # note: the superclass must be passed before mixin modules
-MockList = MicroMock.make(Array, Useless)
+MockList = Spoof.make(Array, Useless)
 
 list = MockList.new
 
@@ -92,7 +92,7 @@ list.prefixed(:num) # => ["num:1", "num:2", "num:3"]
 Here is an example that mocks part of ActiveRecord.
 
 ```ruby
-Model = MicroMock.make
+Model = Spoof.make
 Model.method(:find) { |*args| model.clone }
 Model.method(:all) { (1..5).map { model.clone } }
 
@@ -103,8 +103,8 @@ model.method(:update_attributes) { |*args| @attributes_updated = true }
 model.method(:save) { |*args| @saved = true }
 
 # try it out
-list = Model.all # => [#<MicroMock70331390241500:0x007fee9b1b1bb0 @args=[]>, #<MicroMock...]
-m = Model.find(1) # => #<MicroMock70331390241500:0x007fee9b17b6a0 @args=[]>
+list = Model.all # => [#<Spoof70331390241500:0x007fee9b1b1bb0 @args=[]>, #<Spoof...]
+m = Model.find(1) # => #<Spoof70331390241500:0x007fee9b17b6a0 @args=[]>
 m.update_attributes(:foo, "bar") # => true
 m.save # => true
 m.destroy # => true
