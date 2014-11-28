@@ -31,7 +31,7 @@ mock.attrs(:one, :two, :three)
 MyMock.attr(:attr_with_default, "Class value")
 
 # add a class method
-MyMock.def(:say_foo) { |arg| "#{foo} #{arg}!" }
+MyMock.method(:say_foo) { |arg| "#{foo} #{arg}!" }
 
 # create a mock instance
 mock = MyMock.new
@@ -46,7 +46,7 @@ mock.attrs(:first, :second, :third)
 mock.attr(:attr_with_default, "Instance value")
 
 # add an instance method
-mock.def(:say_bar) { |arg| "#{bar} #{arg}!" }
+mock.method(:say_bar) { |arg| "#{bar} #{arg}!" }
 
 # use the mock
 MyMock.attr_with_default # => "Class value"
@@ -81,7 +81,7 @@ list.concat [1, 2, 3]
 list.reverse_string # => "3,2,1"
 
 # add an instance method that does something interesting
-list.def :prefixed do |prefix|
+list.method :prefixed do |prefix|
   map { |value| "#{prefix}:#{value}"}
 end
 list.prefixed(:num) # => ["num:1", "num:2", "num:3"]
@@ -93,13 +93,14 @@ Here is an example that mocks part of ActiveRecord.
 
 ```ruby
 Model = MicroMock.make
+Model.method(:find) { |*args| model.clone }
+Model.method(:all) { (1..5).map { model.clone } }
+
 model = Model.new
-model.def(:destroy) { @destroyed = true }
-model.def(:destroyed?) { @destroyed }
-model.def(:update_attributes) { |*args| @attributes_updated = true }
-model.def(:save) { |*args| @saved = true }
-Model.def(:find) { |*args| model.clone }
-Model.def(:all) { (1..5).map { model.clone } }
+model.method(:destroy) { @destroyed = true }
+model.method(:destroyed?) { @destroyed }
+model.method(:update_attributes) { |*args| @attributes_updated = true }
+model.method(:save) { |*args| @saved = true }
 
 # try it out
 list = Model.all # => [#<MicroMock70331390241500:0x007fee9b1b1bb0 @args=[]>, #<MicroMock...]

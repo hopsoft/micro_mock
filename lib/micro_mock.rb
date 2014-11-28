@@ -35,7 +35,7 @@ module MicroMock
   # Creates a method.
   # @param [Symbol] name The name of the method.
   # @yield The block that will serve as the method body.
-  def def(name, &block)
+  def method(name, &block)
     context.send :define_method, name, &block
   end
 

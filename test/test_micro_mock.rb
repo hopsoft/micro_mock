@@ -80,7 +80,7 @@ class TestMicroMock < PryTest::Test
   test "def on class" do
     klass = MicroMock.make
     klass.attr :foo, 2
-    klass.def :foo_times_2 do
+    klass.method :foo_times_2 do
       foo * 2
     end
     assert klass.foo_times_2 == 4
@@ -89,7 +89,7 @@ class TestMicroMock < PryTest::Test
   test "def on instance" do
     instance = MicroMock.make.new
     instance.attr :foo, 2
-    instance.def :foo_times_2 do
+    instance.method :foo_times_2 do
       foo * 2
     end
     assert instance.foo_times_2 == 4
@@ -97,7 +97,7 @@ class TestMicroMock < PryTest::Test
 
   test "def on class with args" do
     klass = MicroMock.make
-    klass.def :multiply do |a, b|
+    klass.method :multiply do |a, b|
       a * b
     end
     assert klass.multiply(2, 10) == 20
@@ -105,7 +105,7 @@ class TestMicroMock < PryTest::Test
 
   test "def on instance with args" do
     instance = MicroMock.make.new
-    instance.def :multiply do |a, b|
+    instance.method :multiply do |a, b|
       a * b
     end
     assert instance.multiply(2, 10) == 20
