@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spoof (2.0.0)
+    spoof (2.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -18,7 +18,7 @@ GEM
     os (0.9.6)
     pry-test (0.5.4)
       os
-    rake (10.3.2)
+    rake (10.4.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     simplecov (0.9.1)

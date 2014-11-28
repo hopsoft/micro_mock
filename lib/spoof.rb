@@ -15,6 +15,7 @@ module Spoof
     end
     klass.extend Spoof
     klass.send :include, Spoof
+    Object.const_set "Spoof#{klass.object_id}", klass
     klass
   end
 
